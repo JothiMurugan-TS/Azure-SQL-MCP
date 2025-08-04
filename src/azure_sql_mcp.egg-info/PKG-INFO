@@ -1,0 +1,56 @@
+Metadata-Version: 2.4
+Name: azure-sql-mcp
+Version: 1.0.0
+Summary: MCP server for Azure SQL database operations
+Author-email: Your Name <your.email@example.com>
+License: MIT License
+Project-URL: Homepage, https://github.com/yourusername/azure-sql-mcp
+Project-URL: Repository, https://github.com/yourusername/azure-sql-mcp
+Project-URL: Documentation, https://github.com/yourusername/azure-sql-mcp#readme
+Project-URL: Issues, https://github.com/yourusername/azure-sql-mcp/issues
+Keywords: mcp,azure,sql,database,model-context-protocol
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: pyodbc>=4.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: azure
+Requires-Dist: azure-identity>=1.12.0; extra == "azure"
+Requires-Dist: azure-keyvault-secrets>=4.7.0; extra == "azure"
+Dynamic: license-file
+
+# Azure SQL MCP Server
+
+A Model Context Protocol (MCP) server that provides seamless integration with Azure SQL databases. This server enables AI assistants to interact with your Azure SQL databases through a standardized interface.
+
+## Features
+
+- **Execute SQL Queries**: Run SELECT, INSERT, UPDATE, and DELETE operations
+- **Schema Discovery**: Get table lists and detailed schema information
+- **Table Management**: Create new tables with custom schemas
+- **Data Insertion**: Insert data into existing tables
+- **Secure Connection**: Uses ODBC with encrypted connections to Azure SQL
+
+## Installation
+
+### From PyPI
+

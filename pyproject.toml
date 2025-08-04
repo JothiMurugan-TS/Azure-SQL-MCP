@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "azure-sql-mcp"
+version = "1.0.0"
+description = "MCP server for Azure SQL database operations"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["mcp", "azure", "sql", "database", "model-context-protocol"]
+dependencies = [
+    "mcp>=1.0.0",
+    "pyodbc>=4.0.0",
+    "python-dotenv>=1.0.0",
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+azure = [
+    "azure-identity>=1.12.0",
+    "azure-keyvault-secrets>=4.7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/azure-sql-mcp"
+Repository = "https://github.com/yourusername/azure-sql-mcp"
+Documentation = "https://github.com/yourusername/azure-sql-mcp#readme"
+Issues = "https://github.com/yourusername/azure-sql-mcp/issues"
+
+[project.scripts]
+azure-sql-mcp = "azure_sql_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+azure_sql_mcp = ["*.json", "*.yaml", "*.yml"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
