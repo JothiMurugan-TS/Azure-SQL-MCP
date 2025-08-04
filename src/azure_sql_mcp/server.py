@@ -3,16 +3,12 @@ import json
 import logging
 import sys
 from typing import Any, Sequence
-from dotenv import load_dotenv
 
 from mcp.server.models import InitializationOptions
 from mcp.server import NotificationOptions, Server
 from mcp.types import Tool, TextContent, LoggingLevel
 
 from .connector import AzureSQLConnector
-
-# Load environment variables
-load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
