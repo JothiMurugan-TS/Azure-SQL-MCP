@@ -279,5 +279,12 @@ async def main():
             ),
         )
 
+def start():
+    """Synchronous entry point to run the asyncio server."""
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("Server shut down.")
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    start()

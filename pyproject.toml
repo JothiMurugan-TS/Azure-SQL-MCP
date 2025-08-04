@@ -53,7 +53,7 @@ Documentation = "https://github.com/yourusername/azure-sql-mcp#readme"
 Issues = "https://github.com/yourusername/azure-sql-mcp/issues"
 
 [project.scripts]
-azure-sql-mcp = "azure_sql_mcp.server:main"
+azure-sql-mcp = "azure_sql_mcp.server:start"
 
 [tool.setuptools.packages.find]
 where = ["src"]

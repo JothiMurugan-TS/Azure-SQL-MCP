@@ -1,2 +1,2 @@
 [console_scripts]
-azure-sql-mcp = azure_sql_mcp.server:main
+azure-sql-mcp = azure_sql_mcp.server:start
