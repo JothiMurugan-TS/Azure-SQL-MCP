@@ -67,48 +67,48 @@ async def handle_list_tools() -> list[Tool]:
                 "required": ["table_name"]
             }
         ),
-        Tool(
-            name="create_table",
-            description="Create a new table in the database",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "table_name": {
-                        "type": "string",
-                        "description": "Name of the table to create"
-                    },
-                    "columns": {
-                        "type": "string",
-                        "description": "Column definitions (e.g., 'id INT PRIMARY KEY, name VARCHAR(100)')"
-                    }
-                },
-                "required": ["table_name", "columns"]
-            }
-        ),
-        Tool(
-            name="insert_data",
-            description="Insert data into a table",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "table_name": {
-                        "type": "string",
-                        "description": "Name of the table"
-                    },
-                    "columns": {
-                        "type": "array",
-                        "description": "Column names",
-                        "items": {"type": "string"}
-                    },
-                    "values": {
-                        "type": "array",
-                        "description": "Values to insert",
-                        "items": {"type": "string"}
-                    }
-                },
-                "required": ["table_name", "columns", "values"]
-            }
-        )
+        # Tool(
+        #     name="create_table",
+        #     description="Create a new table in the database",
+        #     inputSchema={
+        #         "type": "object",
+        #         "properties": {
+        #             "table_name": {
+        #                 "type": "string",
+        #                 "description": "Name of the table to create"
+        #             },
+        #             "columns": {
+        #                 "type": "string",
+        #                 "description": "Column definitions (e.g., 'id INT PRIMARY KEY, name VARCHAR(100)')"
+        #             }
+        #         },
+        #         "required": ["table_name", "columns"]
+        #     }
+        # ),
+        # Tool(
+        #     name="insert_data",
+        #     description="Insert data into a table",
+        #     inputSchema={
+        #         "type": "object",
+        #         "properties": {
+        #             "table_name": {
+        #                 "type": "string",
+        #                 "description": "Name of the table"
+        #             },
+        #             "columns": {
+        #                 "type": "array",
+        #                 "description": "Column names",
+        #                 "items": {"type": "string"}
+        #             },
+        #             "values": {
+        #                 "type": "array",
+        #                 "description": "Values to insert",
+        #                 "items": {"type": "string"}
+        #             }
+        #         },
+        #         "required": ["table_name", "columns", "values"]
+        #     }
+        # )
     ]
 
 @server.call_tool()
@@ -124,10 +124,10 @@ async def handle_call_tool(name: str, arguments: dict | None) -> list[TextConten
             return await get_tables()
         elif name == "get_table_schema":
             return await get_table_schema(arguments)
-        elif name == "create_table":
-            return await create_table(arguments)
-        elif name == "insert_data":
-            return await insert_data(arguments)
+        # elif name == "create_table":
+        #     return await create_table(arguments)
+        # elif name == "insert_data":
+        #     return await insert_data(arguments)
         else:
             return [TextContent(type="text", text=f"Unknown tool: {name}")]
     except Exception as e:
@@ -216,46 +216,46 @@ async def get_table_schema(arguments: dict) -> list[TextContent]:
     except Exception as e:
         return [TextContent(type="text", text=f"Failed to get schema: {str(e)}")]
 
-async def create_table(arguments: dict) -> list[TextContent]:
-    """Create table"""
-    table_name = arguments.get("table_name", "")
-    columns = arguments.get("columns", "")
+# async def create_table(arguments: dict) -> list[TextContent]:
+#     """Create table"""
+#     table_name = arguments.get("table_name", "")
+#     columns = arguments.get("columns", "")
     
-    try:
-        with connector.get_connection() as conn:
-            cursor = conn.cursor()
-            query = f"CREATE TABLE {table_name} ({columns})"
-            cursor.execute(query)
-            conn.commit()
+#     try:
+#         with connector.get_connection() as conn:
+#             cursor = conn.cursor()
+#             query = f"CREATE TABLE {table_name} ({columns})"
+#             cursor.execute(query)
+#             conn.commit()
             
-            return [TextContent(
-                type="text",
-                text=f"Table '{table_name}' created successfully."
-            )]
-    except Exception as e:
-        return [TextContent(type="text", text=f"Failed to create table: {str(e)}")]
+#             return [TextContent(
+#                 type="text",
+#                 text=f"Table '{table_name}' created successfully."
+#             )]
+#     except Exception as e:
+#         return [TextContent(type="text", text=f"Failed to create table: {str(e)}")]
 
-async def insert_data(arguments: dict) -> list[TextContent]:
-    """Insert data into table"""
-    table_name = arguments.get("table_name", "")
-    columns = arguments.get("columns", [])
-    values = arguments.get("values", [])
+# async def insert_data(arguments: dict) -> list[TextContent]:
+#     """Insert data into table"""
+#     table_name = arguments.get("table_name", "")
+#     columns = arguments.get("columns", [])
+#     values = arguments.get("values", [])
     
-    try:
-        with connector.get_connection() as conn:
-            cursor = conn.cursor()
-            columns_str = ", ".join(columns)
-            placeholders = ", ".join(["?" for _ in values])
-            query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
-            cursor.execute(query, values)
-            conn.commit()
+#     try:
+#         with connector.get_connection() as conn:
+#             cursor = conn.cursor()
+#             columns_str = ", ".join(columns)
+#             placeholders = ", ".join(["?" for _ in values])
+#             query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
+#             cursor.execute(query, values)
+#             conn.commit()
             
-            return [TextContent(
-                type="text",
-                text=f"Data inserted into '{table_name}' successfully."
-            )]
-    except Exception as e:
-        return [TextContent(type="text", text=f"Failed to insert data: {str(e)}")]
+#             return [TextContent(
+#                 type="text",
+#                 text=f"Data inserted into '{table_name}' successfully."
+#             )]
+#     except Exception as e:
+#         return [TextContent(type="text", text=f"Failed to insert data: {str(e)}")]
 
 async def main():
     """Main entry point"""
