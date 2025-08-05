@@ -6,4 +6,9 @@ __email__ = "your.email@example.com"
 
 from .server import main
 
-__all__ = ["main"]
+__all__ = [
+    "main",
+    "execute_query",
+    "get_tables",
+    "get_table_schema"
+]
